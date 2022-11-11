@@ -1,0 +1,128 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type User {
+  id: ID!
+  email: String!
+  avatar: String
+  accountType: String
+  name: String!
+  gender: String
+  dob: DateTime
+  phone: String
+  password: String!
+  roles: [String!]!
+  country: String
+  postalCode: String
+  experience: String
+  investmentAmount: String
+  investmentStyle: [String!]
+  financialPlan: [String!]
+  returnExpection: String
+  contactNo: String
+  subscribedToNewsFeed: Boolean!
+  token: String!
+  refreshToken: String!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Category {
+  id: ID!
+  name: String!
+  parentcategory: String
+}
+
+type Query {
+  users: [User!]!
+  hello: String!
+  login(input: LoginInput!): User!
+  me: User!
+  forgetPassword(input: ForgetInput!): String!
+  getForgetPasswordToken(input: ForgetInputCode!): String!
+  authhello: String!
+  categories: [Category!]!
+  category(id: ID!): Category!
+  helloCat: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input ForgetInput {
+  email: String!
+}
+
+input ForgetInputCode {
+  email: String!
+  code: String!
+}
+
+type Mutation {
+  createUser(input: UserInput!): User!
+  updateUser(input: UserUpdateInput!): User!
+  deleteUser(id: String!): User!
+  register(input: RegisterInput!): User!
+  updatePassword(input: UpdatePasswordInput!): User!
+  refresTokens(input: RefreshTokenInput!): User!
+  sendVerificationMessage: String!
+  verifyMessageCode(input: verifyMessageInput!): String!
+  changePassword(input: ChangePasswordInput!): User!
+  createCategory(input: CreateCategoryInput!): Category!
+  updateCategory(input: UpdateCategoryInput!): Category!
+  removeCategory(id: ID!): Category!
+}
+
+input UserInput {
+  name: String!
+  email: String!
+  password: String!
+  contactNo: String!
+}
+
+input UserUpdateInput {
+  name: String
+  contactNo: String
+}
+
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+  contactNo: String!
+}
+
+input UpdatePasswordInput {
+  token: String!
+  password: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+input verifyMessageInput {
+  code: String!
+}
+
+input ChangePasswordInput {
+  current: String!
+  password: String!
+}
+
+input CreateCategoryInput {
+  name: String!
+  parentcategory: String
+}
+
+input UpdateCategoryInput {
+  id: ID!
+  name: String
+  parentcategory: String
+}
